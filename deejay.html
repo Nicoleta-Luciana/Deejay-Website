@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeeJay M&G</title>
+    <style>
+        /* Resetăm marginile și padding-ul implicit */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Bara de navigație fixă */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Logo-ul din bara de navigație */
+        nav .logo {
+            height: 60px;
+            margin-right: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Header cu imagine de fundal */
+        header {
+            position: relative;
+            background: url('imagine.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 85vh;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            height: 300px;
+            margin-right: 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        header h1 {
+            font-size: 5em;
+            margin-top: -30px;
+        }
+
+        header .small-text {
+            font-size: 1.5em;
+            margin-top: -10px;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        #servicii .button-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 100px; /* Distanta mica */
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            justify-items: center;
+        }
+
+        #servicii .button { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 350px;
+            background-color: #555;
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-overflow: ellipsis; /* Se adaugă pentru a limita textul în caz că este prea lung */
+        }
+
+        #servicii .button img {
+            width: 100%; /* Lățimea imaginii va fi 100% din lățimea butonului */
+            height: 70%; /* Limitează înălțimea imaginii pentru a lăsa loc și textului */
+            object-fit: cover; /* Se ajustează imaginea pentru a umple complet spațiul fără a distorsiona raportul */
+            margin-bottom: 15px;
+        }
+
+        #servicii .button p {
+            font-size: 1.2em; /* Ajustează dimensiunea fontului pentru a se potrivi mai bine */
+            margin-top: 10px;
+        }
+
+        #servicii {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            height: 80vh;
+        }
+        
+
+        #servicii .button:hover {
+            background-color: #777; /* Culoare mai închisă la hover */
+        }
+
+        #servicii h2{
+            font-size: 3.5em;
+            margin-top: -15px;
+        }
+
+        #servicii p{
+            font-size: 1.5em;
+            margin-top: -30px;
+        }
+
+        #contact {
+            background: url('imagine.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 40vh;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #contact h2{
+            font-size: 3.5em;
+            margin-top: -20px;
+        }
+
+        #contact p{
+            font-size: 1.5em;
+            margin-top: -30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Stilizarea și organizarea butoanelor în două coloane */
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px; /* Distanta mica */
+            width: 30%; /* Lățimea containerului pentru a apropia coloanele */
+            margin-left: auto;
+            margin-right: auto;
+            justify-items: center;
+        }
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Spațiu între logo și text */
+            width: auto;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            font-size: 1em;
+            border: 1px solid #333;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .contact-button:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Stiluri pentru logo-urile din butoane */
+        .button-logo {
+            width: 20px; /* Ajustează dimensiunea logo-urilor */
+            height: 20px;
+        }
+      
+        /* Modificarea animației de încărcare pentru a crea efectul de undă sonoră în expansiune */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundal mai deschis */
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .loading-spinner {
+            position: relative;
+            width: 60px; /* Dimensiune mai mare pentru cercul central */
+            height: 60px;
+            border-radius: 50%;
+            background-color: #9b59b6; /* Culoare mov pentru cercul principal */
+            animation: pulse 1s ease-out infinite;
+        }
+
+        .loading-spinner::before, .loading-spinner::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(155, 89, 182, 0.2); /* Umbra mai deschisă */
+            animation: pulseExpansion 1s ease-out infinite;
+        }
+
+        .loading-spinner::before {
+            width: 120px;
+            height: 120px;
+            top: -30px;
+            left: -30px;
+            animation-delay: 0.3s; /* Întârziere pentru cercul de expansiune */
+        }
+
+        .loading-spinner::after {
+            width: 180px;
+            height: 180px;
+            top: -60px;
+            left: -60px;
+            animation-delay: 0.6s; /* Întârziere pentru cercul de expansiune */
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Animația de expansiune a cercurilor */
+        @keyframes pulseExpansion {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="logo.png" alt="Logo" class="logo">
+        <a href="#acasa">Acasă</a>
+        <a href="#servicii">Servicii</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+    <div class="content" id="acasa">
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1>Sonorizări evenimente</h1>
+        <h1 class="small-text">Nunţi - Cumătrii - Aniversări - Majorate</h1>
+        <h1 class="small-text">Alege calitatea. Alege momente speciale. Alege DeeJay M&G.</h1>
+    </div>
+    </header>
+
+    <div id="servicii">
+        <h2>Serviciile Noastre</h2>
+        <p>Explorează pachetele noastre pentru evenimente speciale. Fiecare pachet este conceput pentru a adăuga o notă de rafinament și energie evenimentului tău. Alege una dintre ofertele noastre și pregătește-te pentru o experiență memorabilă!</p>
+        <div class="button-container">
+            <a href="pachetnunta.html" class="button">
+                <img src="nunta.jpg" alt="Logo Pachet Nuntă">
+                Pachet Nunți
+            </a>
+            <a href="pachetcumatrie.html" class="button">
+                <img src="cumatrie.jpg" alt="Logo Pachet Cumătrii">
+                Pachet Cumătrii
+            </a>
+            <a href="pachetmajorat.html" class="button">
+                <img src="majorat.jpg" alt="Logo Pachet Majorat">
+                Pachet Majorate/Aniversări
+            </a>
+        </div>
+    </div>
+    
+    <div id="contact">
+        <h2>Contact</h2>
+        <p>Suntem la un mesaj distanță!</p>
+        <p>Echipa DeeJay M&G este gata să-ți răspundă la orice întrebare. Fie că vrei detalii despre pachete sau ai nevoie de consultanță, contactează-ne acum pentru a transforma evenimentul tău într-o amintire de neuitat! Ne găsești pe e-mail, telefon, WhatsApp sau Facebook.</p>
+        <div class="button-container">
+            <a href="mailto:marianpantoc@yahoo.com" class="contact-button">
+                <img src="logo-email.jpg" alt="E-mail Logo" class="button-logo">
+                E-mail
+            </a>
+            <a href="tel:+40785427610" class="contact-button">
+                <img src="logo-tel.jpg" alt="Telefon Logo" class="button-logo">
+                Telefon
+            </a>
+            <a href="https://wa.me/40785427610" target="_blank" class="contact-button">
+                <img src="logo-whap.jpg" alt="WhatsApp Logo" class="button-logo">
+                WhatsApp
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100063588999723" target="_blank" class="contact-button">
+                <img src="logo-fb.png" alt="Facebook Logo" class="button-logo">
+                Facebook
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('a[href="#acasa"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: document.querySelector('#acasa').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('a[href="#servicii"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: document.querySelector('#servicii').offsetTop - 69,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: document.querySelector('#contact').offsetTop - 120,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+    
+    <footer>
+        <p>&copy; 2024 DeeJay M&G.</p>
+        <p>&copy; Toate drepturile rezervate.</p>
+    </footer>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = 1;
+            }, 10); // Așteaptă puțin pentru tranziția de opacitate
+            }
+        
+         // Funcție pentru a ascunde animația de încărcare
+         function hideLoading() {
+            document.getElementById('loading').style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 500); // După 0.5 secunde se ascunde complet
+            }
+            
+            // Ascunde animația de încărcare după 2 secunde
+            document.querySelectorAll('a[href^="pachet"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // Previi navigarea imediată
+                    showLoading(); // Arată animația de încărcare
+
+                    // Așteaptă 2 secunde înainte de a naviga
+                    setTimeout(() => {
+                        window.location.href = link.href; // Navighează către link
+                        }, 1000); // Așteaptă 2 secunde
+                        });
+                    });
+    </script>
+</body>
+</html>
